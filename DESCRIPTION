@@ -1,0 +1,11 @@
+Package: bmi510final
+Type: Package
+Title: Final Project Package for BMI 510
+Version: 0.1.0
+Author: Elijah Chou
+Maintainer: Elijah Chou <elijah.chou@emory.edu>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
