@@ -19,12 +19,7 @@ This function takes two numerical vectors \code{status} and \code{time} represen
 survival status and survival time, respectively. It calculates and plots the survival curve S(t).
 }
 \examples{
-# Load data
 data <- read.csv("https://jlucasmckay.bmi.emory.edu/global/bmi510/Labs-Materials/survival.csv")
-# Extract status and time vectors from the dataset
-status <- data$status
-time <- data$time
-# Plot survival curve
-survCurv(status, time)
+survCurv(data$status, data$time)
 
 }

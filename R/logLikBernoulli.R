@@ -11,17 +11,10 @@
 #'
 #' @export
 logLikBernoulli <- function(data) {
-  # Grid search with step of 0.001
   ps <- seq(0, 1, by = 0.001)
-
-  # Calculate log-likelihood for each value of p
   log_likelihoods <- sapply(ps, function(p) {
     sum(data * log(p) + (1 - data) * log(1 - p))
   })
-
-  # Find index of maximum log-likelihood
   max_index <- which.max(log_likelihoods)
-
-  # Return corresponding value of p
   ps[max_index]
 }
