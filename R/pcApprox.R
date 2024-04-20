@@ -7,21 +7,26 @@
 #' @param x A numerical vector representing the original data.
 #' @param npc The number of principal components to use for approximation.
 #' @return An approximation to the original data, rescaled and centered.
+#' @importFrom stats prcomp
+#' @importFrom MASS mvrnorm
 #' @examples
-#' # Assuming pca_result is a result of PCA analysis
-#' approx_data <- pcApprox(x, npc)
+#' # Generate sample data
+#' set.seed(123)
+#' n <- 100
+#' p <- 5
+#' Sigma <- matrix(0.5, p, p)
+#' diag(Sigma) <- 1
+#' data <- MASS::mvrnorm(n, rep(0, p), Sigma)
+#'
+#' # Perform principal component analysis approximation
+#' approx_data <- pcApprox(data, npc = 2)
+#' head(approx_data)
 #'
 #' @export
 pcApprox <- function(x, npc) {
-  pca_result <- prcomp(x, center = TRUE, scale. = TRUE)
-  pcs <- pca_result$x[, 1:npc]
-  approx_data <- pcs %*% t(pca_result$rotation[, 1:npc])
-  if (npc < ncol(pca_result$rotation)) {
-    approx_data <- approx_data * sqrt(pca_result$sdev[1:npc])
-  }
-  if (pca_result$center) {
-    approx_data <- scale(approx_data, center = FALSE, scale = FALSE)
-    approx_data <- approx_data + colMeans(x)
-  }
-  return(approx_data)
+  pca_result <- prcomp(x)
+  approx <- pca_result$x[, 1:npc] %*% t(pca_result$rotation[, 1:npc])
+  approx <- approx * sqrt(pca_result$sdev[1:npc])
+  approx <- approx + colMeans(x)
+  return(approx)
 }

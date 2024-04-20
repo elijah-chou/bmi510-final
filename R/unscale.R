@@ -6,11 +6,13 @@
 #' @param x A numerical vector that has been previously scaled.
 #' @return The original unscaled vector.
 #' @examples
-#' scaled_data <- scale(data)
-#' unscaled_data <- unscale(scaled_data)
+#' scaled_vector <- scale(1:10)
+#' unscaled_vector <- unscale(scaled_vector)
 #'
 #' @export
 unscale <- function(x) {
   unscaled <- x * attr(x, 'scaled:scale') + attr(x, "scaled:center")
+  attr(unscaled, 'scaled:scale') <- NULL
+  attr(unscaled, 'scaled:center') <- NULL
   return(unscaled)
 }
