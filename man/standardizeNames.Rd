@@ -13,7 +13,7 @@ standardizeNames(data)
 A tibble with standardized variable names.
 }
 \description{
-This function takes a tibble \code{data} and standardizes the variable names to "small_camel" case
+This function takes a tibble \code{data} and standardizes the variable names to "snake" case
 using \code{dplyr::rename_with} and \code{janitor::make_clean_names}.
 }
 \examples{

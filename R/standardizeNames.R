@@ -1,6 +1,6 @@
 #' Standardize Variable Names
 #'
-#' This function takes a tibble \code{data} and standardizes the variable names to "small_camel" case
+#' This function takes a tibble \code{data} and standardizes the variable names to "snake" case
 #' using \code{dplyr::rename_with} and \code{janitor::make_clean_names}.
 #'
 #' @param data A tibble with variable names to be standardized.

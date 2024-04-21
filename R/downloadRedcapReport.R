@@ -15,7 +15,6 @@
 #' @export
 downloadRedcapReport <- function(redcapTokenName, redcapUrl, redcapReportId) {
   api_token <- Sys.getenv(redcapTokenName)
-  print(api_token)
   formData <- list("token"=api_token,
                    content='report',
                    format='csv',
