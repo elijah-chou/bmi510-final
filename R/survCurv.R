@@ -26,10 +26,10 @@
 #        main = "Survival Curve")
 # }
 survCurv <- function(status, time) {
-  survfit2(Surv(time, status) ~ 1) |>
-    ggsurvfit() +
-    labs(
-      x = "Days",
+  ggsurvfit::survfit2(survival::Surv(time, status) ~ 1) |>
+    ggsurvfit::ggsurvfit() +
+    ggplot2::labs(
+      x = "Time",
       y = "Overall survival probability"
     )
 }

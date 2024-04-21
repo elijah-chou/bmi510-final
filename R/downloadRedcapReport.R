@@ -7,7 +7,8 @@
 #' @param redcapUrl The URL of the RedCap instance.
 #' @param redcapReportId The ID of the RedCap report to query.
 #' @return A tibble containing the contents of the RedCap report.
-#' @importFrom httr POST content
+#' @importFrom httr POST content status_code
+#' @importFrom tibble tibble
 #' @examples
 #' # Example usage
 #' redcap_report <- downloadRedcapReport("redcap_token", "https://redcap.emory.edu/api/", "46524")
@@ -28,7 +29,7 @@ downloadRedcapReport <- function(redcapTokenName, redcapUrl, redcapReportId) {
   response <- httr::POST(redcapUrl, body = formData, encode = "form")
   result <- httr::content(response)
   if (httr::status_code(response) == 200) {
-    return(result)
+    return(tibble::tibble(result))
   } else {
     stop("Failed to download RedCap report. HTTP status code: ", httr::status_code(response))
   }

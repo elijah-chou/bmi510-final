@@ -24,7 +24,7 @@
 #'
 #' @export
 pcApprox <- function(x, npc) {
-  pca_result <- prcomp(x)
+  pca_result <- stats::prcomp(x)
   approx <- pca_result$x[, 1:npc] %*% t(pca_result$rotation[, 1:npc])
   approx <- approx * sqrt(pca_result$sdev[1:npc])
   approx <- approx + colMeans(x)

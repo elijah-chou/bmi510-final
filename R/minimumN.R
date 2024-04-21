@@ -21,9 +21,9 @@
 #' @export
 minimumN <- function(x1, x2 = NULL) {
   if (is.null(x2)) {
-    result <- pwr::pwr.t.test(d = mean(x1) / sd(x1), sig.level = 0.05, power = 0.8, n = NULL, alternative = "two.sided")$n
+    result <- pwr::pwr.t.test(d = mean(x1) / stats::sd(x1), sig.level = 0.05, power = 0.8, n = NULL, alternative = "two.sided")$n
   } else {
-    result <- pwr::pwr.t2n.test(d = abs(mean(x1) - mean(x2)) / sqrt((sd(x1)^2 + sd(x2)^2) / 2), n1 = length(x1), n2 = NULL,
+    result <- pwr::pwr.t2n.test(d = abs(mean(x1) - mean(x2)) / sqrt((stats::sd(x1)^2 + stats::sd(x2)^2) / 2), n1 = length(x1), n2 = NULL,
                                 sig.level = 0.05, power = 0.8, alternative = "two.sided")$n2
   }
   return(ceiling(result))

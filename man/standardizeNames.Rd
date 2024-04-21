@@ -17,13 +17,8 @@ This function takes a tibble \code{data} and standardizes the variable names to 
 using \code{dplyr::rename_with} and \code{janitor::make_clean_names}.
 }
 \examples{
-# Load required libraries
-library(dplyr)
-library(janitor)
-# Create sample tibble
-data <- tibble(`First Name` = c("Alice", "Bob", "Charlie"),
+data <- tibble::tibble(`First Name` = c("Alice", "Bob", "Charlie"),
                `Last Name` = c("Smith", "Johnson", "Doe"))
-# Standardize variable names
 standardized_data <- standardizeNames(data)
 
 }

@@ -7,14 +7,10 @@
 #' @return A tibble with standardized variable names.
 #' @importFrom dplyr rename_with
 #' @importFrom janitor make_clean_names
+#' @importFrom tibble tibble
 #' @examples
-#' # Load required libraries
-#' library(dplyr)
-#' library(janitor)
-#' # Create sample tibble
-#' data <- tibble(`First Name` = c("Alice", "Bob", "Charlie"),
+#' data <- tibble::tibble(`First Name` = c("Alice", "Bob", "Charlie"),
 #'                `Last Name` = c("Smith", "Johnson", "Doe"))
-#' # Standardize variable names
 #' standardized_data <- standardizeNames(data)
 #'
 #' @export
