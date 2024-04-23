@@ -23,10 +23,10 @@
 #' head(approx_data)
 #'
 #' @export
-pcApprox <- function(x, npc) {
-  pca_result <- stats::prcomp(x)
-  approx <- pca_result$x[, 1:npc] %*% t(pca_result$rotation[, 1:npc])
-  approx <- approx * sqrt(pca_result$sdev[1:npc])
-  approx <- approx + colMeans(x)
-  return(approx)
+pcApprox = function(x, npc) {
+  pca_fit <- prcomp(x, scale = TRUE)
+  pc_scores <- pca_fit$x[, 1:npc]
+  approx_data <- pc_scores %*% t(pca_fit$rotation[, 1:npc])
+  approx_data <- approx_data * attr(pca_fit$scale, "scaled:scale") + attr(pca_fit$center, "means")
+  return(approx_data)
 }

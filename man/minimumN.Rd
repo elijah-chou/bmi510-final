@@ -15,7 +15,7 @@ minimumN(x1, x2 = NULL)
 The minimum sample size needed for a t-test.
 }
 \description{
-This function acts as a wrapper around pwr::pwr.t2n.test to calculate the minimum sample size
+This function acts as a wrapper around either pwr::pwr.t.test or pwr::pwr.t2n.test to calculate the minimum sample size
 needed for a t-test with the given preliminary data, ensuring 80% power at alpha=0.05.
 In the two sample case, it will return the minimum sample size for the second sample.
 }
