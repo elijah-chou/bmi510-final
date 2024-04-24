@@ -2,7 +2,8 @@
 #'
 #' This function acts as a wrapper around either pwr::pwr.t.test or pwr::pwr.t2n.test to calculate the minimum sample size
 #' needed for a t-test with the given preliminary data, ensuring 80% power at alpha=0.05.
-#' In the two sample case, it will return the minimum sample size for the second sample.
+#' In the two sample case, it will return the minimum sample size for the second sample, but it should be
+#' representative of the sample size required for 80% power at alpha=0.05 for both samples in a 2 sample t-test.
 #'
 #' @param x1 A numeric vector representing the first sample.
 #' @param x2 Optional. A numeric vector representing the second sample. If omitted, only x1 is used.
