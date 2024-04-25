@@ -6,30 +6,25 @@
 #' @param status A numerical vector representing survival status (1 for event occurred, 0 for censored).
 #' @param time A numerical vector representing survival time.
 #' @return NULL. The function produces a plot of the survival curve.
-#' @importFrom ggsurvfit survfit2 ggsurvfit
-#' @importFrom survival Surv
-#' @importFrom ggplot2 labs
+#' @importFrom graphics lines
 #' @examples
 #' data <- read.csv("https://jlucasmckay.bmi.emory.edu/global/bmi510/Labs-Materials/survival.csv")
 #' survCurv(data$status, data$time)
 #'
 #' @export
-# survCurv <- function(status, time) {
-#   sorted_data <- data.frame(time = time, status = status)
-#   sorted_data <- sorted_data[order(sorted_data$time), ]
-#   n <- length(time)
-#   S <- numeric(n)
-#   for (i in 1:n) {
-#     S[i] <- sum(sorted_data$status[i:n] == 0) / sum(sorted_data$status[i:n] >= 0)
-#   }
-#   plot(sorted_data$time, S, type = "l", xlab = "Time", ylab = "Survival Probability",
-#        main = "Survival Curve")
-# }
 survCurv <- function(status, time) {
-  ggsurvfit::survfit2(survival::Surv(time, status) ~ 1) |>
-    ggsurvfit::ggsurvfit() +
-    ggplot2::labs(
-      x = "Time",
-      y = "Overall survival probability"
-    )
+  data <- data.frame(status = status, time = time)
+  data <- data[order(data$time), ]
+  n <- length(status)
+  surv_prob <- rep(1, n)
+  events <- rep(0, n)
+  for (i in 1:n) {
+    events[i] <- sum(data$time[i] >= data$time & data$status == 1)
+    surv_prob[i] <- (n - events[i]) / n
+  }
+
+  survival_curve <- data.frame(time = data$time, surv_prob = surv_prob)
+  plot(survival_curve$time, survival_curve$surv_prob, type = "s", ylim = c(0, 1),
+       xlab = "Time", ylab = "Survival Probability", main = "Survival Curve")
+  graphics::lines(survival_curve$time, survival_curve$surv_prob, type = "s")
 }
