@@ -1,5 +1,5 @@
 # BMI 510: Final Project
-This public repository contains an R package documented with Roxygen for the following 7 functions:
+The code stored here is for the final project of BMI 510: Biostatistics for Machine Learning taught in Spring 2024 by Dr. Lucas McKay at Emory University. This public repository contains an R package documented with Roxygen for the following 7 functions:
 - logLikBernoulli
 - survCurv
 - unscale
